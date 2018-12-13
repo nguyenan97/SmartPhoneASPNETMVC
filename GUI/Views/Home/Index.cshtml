@@ -1,8 +1,83 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shares/_Layout.cshtml";
+    ViewBag.Title = "Trang Chủ - Siêu thị điện thoại, Tablet, Laptop, Phụ kiện chính hãng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.keywords = "điện thoại di động, dtdd, smartphone, phụ kiện điện thoại";
+    ViewBag.description = "Hệ thống bán lẻ điện thoại di động, smartphone, giá tốt, dịch vụ khách hàng được yêu thích nhất";
 }
 
-<h2>Index</h2>
+<script>
+    $(document).ready(function () {
+        //$(".menuitem").css("background-color", "while")
+        //$(".trangchu").css("background-color", "#5a88ca")
+        $(".trangchu").addClass("active");
+        $(".btn_add_to_card").click(function () {
+            var idpro = $(this).attr("data-id");
+            console.log(idpro)
+            $.ajax({
+                url: "/ShoppingCard/AddCard",
+                type: "get",
+                data: { id: idpro },
+                success: function (da) {
+                    $("#SLCard").html(da)
+                    console.log(da)
+                },
+                error: function (da) {
+                    console.log(da)
+                }
+            })
+        })
 
+    })
+</script>
+
+<div class="slider-area">
+    <!-- Slider -->
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            <li>
+                <img src="~/Assets/img/h4-slide.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        iPhone <span class="primary">6 <strong>Plus</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Dual SIM</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Assets/img/h4-slide2.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        by one, get one <span class="primary">50% <strong>off</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">school supplies & backpacks.*</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Assets/img/h4-slide3.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Select Item</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li>
+                <img src="~/Assets/img/h4-slide4.png" alt="Slide">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">& Phone</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- ./Slider -->
+</div> <!-- End slider area -->
+
+@Html.Action("SanPhamLienQuan","Home")

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,19 @@ namespace GUI.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        ProductBLL probll;
+        public HomeController()
+        {
+            probll = new ProductBLL();
+        }
         public ActionResult Index()
         {
             return View();
         }
+        public ActionResult SanPhamLienQuan()
+        {
+            return PartialView("_SanPhamLienQuan",probll.getAllProduct());
+        }
+
     }
 }

@@ -2,48 +2,48 @@
 
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shares/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Shopping Cart</h2>
+                    <h2>Login</h2>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                
-
-
-                
+         
             </div>
 
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        
 
-                        <form id="login-form-wrap"  method="post">
-
+                        <form action="/Customer/Login" method="post" enctype="multipart/form-data" class="login">
+                           
                             <p class="form-row form-row-first">
                                 <label for="username">
                                     Username or email <span class="required">*</span>
-                                </label>
+                                </label><br />
                                 <input type="text" id="username" name="username" class="input-text">
                             </p>
                             <p class="form-row form-row-last">
                                 <label for="password">
                                     Password <span class="required">*</span>
-                                </label>
+                                </label><br />
                                 <input type="password" id="password" name="password" class="input-text">
                             </p>
                             <div class="clear"></div>
@@ -51,15 +51,14 @@
 
                             <p class="form-row">
                                 <input type="submit" value="Login" name="login" class="button">
-                                <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me </label>
+                                @*<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me </label>*@
                             </p>
-                            <p class="lost_password">
-                                <a href="#">Lost your password?</a>
-                            </p>
+                            
 
                             <div class="clear"></div>
                         </form>
 
+                
 
                     </div>
                 </div>

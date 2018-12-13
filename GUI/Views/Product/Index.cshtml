@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<Models.Product>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shares/_Layout.cshtml";
+    ViewBag.Title = "Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
     $(document).ready(function () {
-        $(".add_to_cart_button").click(function () {
-            var idd = $(this).attr("data-id");
+
+        $(".sanpham").addClass("active");
+        $(".btn_add_to_card").click(function () {
+            var idpro = $(this).attr("data-id");
+            console.log(idpro)
             $.ajax({
                 url: "/ShoppingCard/AddCard",
                 type: "get",
-                data: { id: idd },
+                data: { id: idpro },
                 success: function (da) {
                     $("#SLCard").html(da)
                     console.log(da)
@@ -21,42 +24,32 @@
                 }
             })
         })
-
     })
 </script>
 
-
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Shop</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@{Html.RenderAction("Index", "CategoryPro"); }
 
 
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
-        <div class="row">
+        <div class="row lst-Product">
             @foreach (var item in Model)
             {
                 <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="@item.ProductImage" alt='@item.ProductName' />
+                    <div class="single-shop-product" style="max-width:88%">
+                        <div class="product-upper" >
+                            <a title="@item.ProductName" href="/san-pham/@item.SeoLink-@item.ProductID"><img src="@item.ProductImage" alt='@item.ProductName' /></a>
+                           
                         </div>
-                        <h2><a title="@item.ProductName" href="@Url.Action("Detail","Product",new {id = item.ProductID })" data-id="@item.ProductID">@item.ProductName</a></h2>
+                       
+                        <h2><a title="@item.ProductName" href="/san-pham/@item.SeoLink-@item.ProductID" data-id="@item.ProductID">@item.ProductName</a></h2>
                         <div class="product-carousel-price">
-                            <ins>@item.UnitPrice</ins> @*<del>$999.00</del>*@
+                            <ins>@string.Format("{0:0,0}", item.UnitPrice) VND</ins> @*<del>$999.00</del>*@
                         </div>
 
                         <div class="product-option-shop">
-                            <button class="add_to_cart_button" data-id="@item.ProductID" title="Add to cart">Add to cart</button>
+                            <button class="add_to_cart_button btn_add_to_card" data-id="@item.ProductID" title="Add to cart">Add to cart</button>
                         </div>
                     </div>
                 </div>

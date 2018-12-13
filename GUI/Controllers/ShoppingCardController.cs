@@ -6,15 +6,18 @@ using System.Web;
 using System.Web.Mvc;
 using Models;
 using GUI.Models;
+
 namespace GUI.Controllers
 {
-    public class ShoppingCardController : Controller
+    public class ShoppingCardController : BaseController
     {
         // GET: ShoppingCart
         ProductBLL probll;
+        OrderBLL obll;
         public ShoppingCardController()
         {
             probll = new ProductBLL();
+            obll = new OrderBLL();
         }
         public ActionResult Index()
         {
@@ -34,6 +37,7 @@ namespace GUI.Controllers
                 lstCard[lstCard.IndexOf(c)].iQuantity += 1;
             }
             Session["Card"] = lstCard;
+            //setAlert("Thêm vào giỏ hàng thành công", "Success");
             return Content(lstCard.Count().ToString());
         }
         public List<GUI.Models.ProductCart> getCard()
@@ -74,5 +78,56 @@ namespace GUI.Controllers
             return Content(string.Format("Tổng tiền: {0:0,0}", lst.Sum(o => (o.dPrice * o.iQuantity))));
         }
 
+      
+        public ActionResult payment()
+        {
+            if (Session["Card"] == null || Session["Card"].ToString() == "")
+            {
+                return Redirect("/Product/Index");
+            }
+            if (Session["DangNhap"] == null || Session["DangNhap"].ToString() == "")
+            {
+                return Redirect("/Customer/Login");
+            }
+            Customer cus =  (Customer)Session["DangNhap"];
+            Order od = new Order();
+            List<ProductCart> lst = getCard();
+            od.OrderID = obll.createNewOderByID(Session["MaTK"].ToString());
+            od.CustomerID = Session["MaTK"].ToString();
+            od.OrderDate = DateTime.Now;
+            od.RequiredDate = DateTime.Now;
+            od.ShippedDate = DateTime.Now.AddDays(3);
+            od.ShipAddress = cus.Address;
+            od.Freight = 0;
+            List<Order_Detail> lstD = new List<Order_Detail>();
+            foreach (var item in lst)
+            {
+                Order_Detail _od = new Order_Detail();
+                _od.OrderID = od.OrderID;
+                _od.ProductID = item.iProID;
+                _od.Quantity =(short) item.iQuantity;
+                _od.UnitPrice =(decimal) item.dPrice;
+                lstD.Add(_od);
+            }
+            obll.AddOrder(od,lstD);
+            setAlert("Thanh toán thành công", "Success");
+            Session["Card"] = null;           
+            return Redirect("/Home/Index");
+        }
+        public ActionResult deletecart(int id)
+        {
+
+            var cart = (List<ProductCart>)Session["Card"];
+
+            cart.RemoveAll(x => x.iProID== id);
+            Session["Card"] = cart;
+            if(cart != null )
+            {
+                return RedirectToAction("viewCard");
+            }
+
+            return RedirectToAction("Index", "Product");
+
+        }
     }
 }

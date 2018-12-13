@@ -15,8 +15,10 @@ namespace Models
         [Required]
         [StringLength(40)]
         public string ProductName { get; set; }
+
         [ForeignKey("Supplier")]
         public int SupplierID { get; set; }
+
         [ForeignKey("Category")]
         public int CategoryID { get; set; }
 
@@ -27,6 +29,23 @@ namespace Models
 
         [StringLength(100)]
         public string ProductImage { get; set; }
+
+        [StringLength(500)]
+        public string Detail { get; set; }
+
+        [Column(TypeName = "ntext")]
+        public string Description { get; set; }
+
+        [StringLength(500)]
+        public string SeoLink { get; set; }
+
+        [StringLength(500)]
+        public string MetaKeyword { get; set; }
+
+        [StringLength(500)]
+        public string MetaDescription { get; set; }
+
+        public bool? Status { get; set; }
 
         public virtual Category Category { get; set; }
 

@@ -14,17 +14,34 @@ namespace BLL
         {
             cdal = new CustomerDAL();
         }
-        public bool checkUser(string user, string pass)
+        public int checkUser(string user, string pass)
         {
             if (user != "" && pass != "")
             {
                 return cdal.checkUser(user,pass);
             }
-            throw new Exception("ban chua dang nhap");
+            return -4; // chua nhap username pass
+            
         }
         public Customer getCusByName(string name)
         {
             return cdal.getCusByName(name);
         }
+        public bool DangKi(Customer cus)
+        {
+            if(cus != null)
+            {
+                cdal.DangKi(cus);
+                return true;
+            }
+           
+            return false;
+            
+        }
+        public int CheckCusID(string id)
+        {
+            return cdal.CheckCusID(id);
+        }
+        
     }
 }

@@ -7,12 +7,20 @@ using Models;
 using DAL;
 namespace BLL
 {
-    class OrderBLL
+    public class OrderBLL
     {
         OrderDAL odal;
         public OrderBLL()
         {
             odal = new OrderDAL();
+        }
+        public List<Order> GetAllOrder()
+        {
+            return odal.GetAllOrder();
+        }
+        public List<Order_Detail> GetDetailOderDetail(string id)
+        {
+            return odal.GetDetailOrder(id);
         }
         public string createNewOderByID(string makh)
         {

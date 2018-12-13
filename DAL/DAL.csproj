@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -50,10 +53,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountDAL.cs" />
+    <Compile Include="CategoryDAL.cs" />
     <Compile Include="CustomerDAL.cs" />
     <Compile Include="Migrations\201811210835255_initDB.cs" />
     <Compile Include="Migrations\201811210835255_initDB.Designer.cs">
       <DependentUpon>201811210835255_initDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811300310240_intitDB2.cs" />
+    <Compile Include="Migrations\201811300310240_intitDB2.Designer.cs">
+      <DependentUpon>201811300310240_intitDB2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811300330136_intitDB3.cs" />
+    <Compile Include="Migrations\201811300330136_intitDB3.Designer.cs">
+      <DependentUpon>201811300330136_intitDB3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301242538_initDB4.cs" />
+    <Compile Include="Migrations\201811301242538_initDB4.Designer.cs">
+      <DependentUpon>201811301242538_initDB4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812090535009_initDB5.cs" />
+    <Compile Include="Migrations\201812090535009_initDB5.Designer.cs">
+      <DependentUpon>201812090535009_initDB5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101053355_initDB6.cs" />
+    <Compile Include="Migrations\201812101053355_initDB6.Designer.cs">
+      <DependentUpon>201812101053355_initDB6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812120441013_initDB7.cs" />
+    <Compile Include="Migrations\201812120441013_initDB7.Designer.cs">
+      <DependentUpon>201812120441013_initDB7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OrderDAL.cs" />
@@ -74,6 +103,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811210835255_initDB.resx">
       <DependentUpon>201811210835255_initDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811300310240_intitDB2.resx">
+      <DependentUpon>201811300310240_intitDB2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811300330136_intitDB3.resx">
+      <DependentUpon>201811300330136_intitDB3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301242538_initDB4.resx">
+      <DependentUpon>201811301242538_initDB4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812090535009_initDB5.resx">
+      <DependentUpon>201812090535009_initDB5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101053355_initDB6.resx">
+      <DependentUpon>201812101053355_initDB6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812120441013_initDB7.resx">
+      <DependentUpon>201812120441013_initDB7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,6 +20,17 @@ namespace Models
         [Column(TypeName = "ntext")]
         public string Description { get; set; }
 
+        [StringLength(100)]
+        public string CategoryImage { get; set; }
+
+        [StringLength(500)]
+        public string SeoLink { get; set; }
+
+        [StringLength(500)]
+        public string MetaKeyword { get; set; }
+
+        [StringLength(500)]
+        public string MetaDescription { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -25,6 +25,8 @@ namespace Models
         [StringLength(24)]
         public string Phone { get; set; }
 
+        public bool? Status { get; set; }
+
         public virtual ICollection<Feedback> Feedbacks { get; set; }
 
 
